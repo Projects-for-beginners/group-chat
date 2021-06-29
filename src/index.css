@@ -1,0 +1,61 @@
+#box{
+  background: rgba(0, 0, 0, 0.15);
+  box-shadow: 10px 10px 5px grey;
+}
+
+#form {
+  background: rgba(0, 0, 0, 0.15);  
+  padding: 0.1rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  height: 3rem;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+}
+
+#input {
+  border: none;
+  padding: 0 1rem;
+  flex-grow: 1;
+  border-radius: 1rem;
+  margin: 0.25rem;
+}
+
+#input:focus {
+  outline: none;
+}
+
+#input::placeholder{
+  color: gray;
+}
+
+#form > button {
+  background: rgb(71, 70, 70);
+  border: none;
+  padding: 0 1rem;
+  margin: 0.25rem;
+  border-radius: 20px;
+  outline: none;
+  color: #fff;
+}
+
+#messages {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#messages > li > span {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin-top: 5px;
+  border-radius: 14px;
+}
+
+#messages > li:nth-child(odd) > span {
+  margin-left: 0px;
+  background: #7130FE;
+}
