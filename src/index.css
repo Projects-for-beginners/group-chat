@@ -5,16 +5,10 @@
   /* grid-auto-rows: minmax(25%, 25%); */
 }
 
-.contacts {
-  border: 1px solid blue;
-  word-break:break-all;
-  /* grid-row: 1; */
-}
-
 .chat {
   border: 1px solid red;
   padding: 0 1rem;
-  word-break:break-all;
+  word-break: break-all;
 }
 
 #form {
@@ -70,8 +64,6 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  /* display: inline-block; */
-  /* flex-wrap: wrap; */
 }
 
 #messages li:nth-child(even) {
@@ -94,7 +86,6 @@
   box-shadow: 0px 1px 5px gray;
   position: relative;
   z-index: 1;
-  border-radius: 1px solid green;
 }
 
 #messages>li:nth-child(even)>span {
@@ -127,4 +118,53 @@
 
 #messages>li:nth-child(odd)>span>p {
   color: white;
+}
+
+.contacts {
+  padding: 0.4rem;
+  border: 1px solid blue;
+  word-break: break-all;
+}
+
+#Contacts-List {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#people {
+  list-style-type: none;
+  margin: 1rem 0 0 0;
+  padding: 0.4rem 0.4rem 0 0.4rem ;
+  display: grid;
+  border-radius: 10px;
+  box-shadow: 0px 1px 5px gray;
+  position: relative;
+  z-index: 1;
+}
+
+#people:first-child{
+  margin: 0;
+}
+
+#people span{
+  display: flex;
+  justify-content: space-between;
+}
+
+.PeopleName{
+  margin: 0;
+  font-weight:bold;
+}
+
+.People-Date{
+  margin: 0;
+  font-weight:initial;
+  font-size: 0.75em;
+  color: gray;
+}
+
+#peopleLastMessage{
+  margin: 0;
+  background-color: burlywood;
 }

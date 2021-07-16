@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-/* import SendRoundedIcon from "@material-ui/icons/SendRounded"; */
-/* import SendIcon from '@material-ui/icons/Send'; */
 
 class Chat extends React.Component {
     constructor(props) {
@@ -86,18 +84,76 @@ class Form extends React.Component {
     }
 }
 
-function Contact() {
-    const name = ['Darrel Steward', 'Ralph Edwards', ' Albert Flores', 'Ronald Richards', 'Kathryn Murphy'];
-    return <p>{name}</p>;
+class Contact extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            nameList: ['Darrel Steward', 'Ralph Edwards', ' Albert Flores', 'Ronald Richards', 'Kathryn Murphy'],
+            name: '',
+            activeContacts: []
+        };
+    }
+    componentDidMount() {
+        this.timerID = setInterval(() => this.serverMessage(), 7000);
+    }
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+    }
+
+    serverMessage() {
+        this.setState((prevState) => ({
+            activeContacts: [...prevState.activeContacts, this.state.nameList[Math.floor(Math.random() * this.state.nameList.length)]],
+        }));
+    }
+
+    render() {
+        let contact = '';
+        if (this.state.activeContacts) {
+            contact = <PeopleList dataParentToChild={this.state.activeContacts} />;
+        }
+
+        return (
+            <div>{contact}</div>
+        );
+    }
+}
+
+function PeopleList(props) {
+    const contacts = props.dataParentToChild;
+    const contactsList = contacts.map((people) => (
+        //key especificada dentro del array.
+        <People
+            key={new Date()} value={people}
+        />
+    ));
+
+    return <ul id="Contacts-List"> {contactsList} </ul>;
+}
+
+function People(props) {
+    //take time
+    var date = new Date();
+    var hours = date.getHours() < 9 ? '0' + date.getHours() : date.getHours();
+    var minutes = date.getMinutes() < 9 ? '0' + date.getMinutes() : date.getMinutes();
+    const time = hours + ':' + minutes;
+
+    return (
+        <li id="people">
+            <span> <p className="PeopleName"> {props.value} </p> <p className="People-Date">{time}</p> </span>
+            <p id="peopleLastMessage"><small>Lorem ipsum dolor sit amet consectetur adipisicing elit.s
+                Ullam nihil in odit omnis eius earum, corporis adipisci voluptatem
+                obcaecati temporibus perspiciatis dicta fugit saepe quod officiis!
+                Mollitia consequatur minus quis</small></p>
+        </li>
+    );
 }
 
 function MessageList(props) {
     const messages = props.dataParentToChild;
     const messagesList = messages.map((message) => (
         //key especificada dentro del array.
-        <
-            Message key={new Date()}
-            value={message}
+        <Message
+            key={new Date()} value={message}
         />
     ));
 
@@ -118,4 +174,4 @@ function Message(props) {
     );
 }
 
-ReactDOM.render(< Chat />, document.getElementById("root"));
+ReactDOM.render(<Chat />, document.getElementById("root"));
