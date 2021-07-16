@@ -1,21 +1,22 @@
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 30% 70%;
   grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
+  /* grid-auto-rows: minmax(25%, 25%); */
 }
 
 .contacts {
   border: 1px solid blue;
-  grid-column: 1 / 2;
-  grid-row: 1;
+  /* grid-row: 1; */
 }
 
 .chat {
   border: 1px solid red;
   padding: 0 1rem;
-  grid-column: 2 / 4;
-  grid-row: 1;
+  /* grid-row: 1; */
+  display: flex;
+  flex-flow: column;
+  flex-wrap: wrap;
 }
 
 #form {
@@ -23,13 +24,11 @@
   padding: 0.1rem;
   position: fixed;
   bottom: 0;
-  left: 34.5%;
-  right: 1.2%;
+  left: 32%;
+  right: 0.65%;
   display: flex;
   height: 3rem;
-  /* box-sizing: border-box; */
-  /* box-shadow: 0px 1px 10px gray;
-  border-radius: 10px; */
+  z-index: 2;
 }
 
 #input {
@@ -69,42 +68,63 @@
   position: absolute;
 }
 
-/* #form button {
-  background: transparent;
-  border: none;
-  padding: 0 1rem;
-  margin: 0.25rem;
-  border-radius: 20px;
-  outline: none;
-  /* color: #fff;
-  background-color: red ;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-} */
-
 #messages {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
+#messages li:nth-child(even) {
+  grid-column: 1/2;
+  background: white;
+  margin: 10px 0;
+}
+
+#messages>li:nth-child(odd) {
+  grid-column: 2/2;
+  background: white;
+  margin: 10px 0;
+}
+
 #messages>li>span {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 2.5rem 0.65rem 1rem;
   margin-top: 5px;
-  border-radius: 14px;
+  border-radius: 10px;
+  box-shadow: 0px 1px 5px gray;
+  position: relative;
+  z-index: 1;
+  border-radius: 1px solid green;
 }
 
 #messages>li:nth-child(even)>span {
   float: left;
   clear: right;
-  background: #e5e1e9;
+  background: white;
 }
 
 #messages>li:nth-child(odd)>span {
   float: right;
   clear: left;
   background: #7130FE;
+}
+
+#messages>li:last-child>span {
+  margin-bottom: 3rem;
+}
+
+#messages>li>span>p {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 0.7em;
+  margin: 0% 8px 1% 0%;
+}
+
+#messages>li:nth-child(even)>span>p {
+  color: gray;
+}
+
+#messages>li:nth-child(odd)>span>p {
+  color: white;
 }

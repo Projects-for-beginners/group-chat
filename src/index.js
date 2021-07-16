@@ -47,7 +47,8 @@ class Chat extends React.Component {
             <div className="wrapper" >
                 <div className="contacts" > Algo </div>
                 <div className="chat" >
-                    <Form parentCallback={this.handleCallback} /> {message}</div>
+                    <Form parentCallback={this.handleCallback} /> {message}
+                </div>
             </div>
         );
     }
@@ -101,9 +102,15 @@ function MessageList(props) {
 }
 
 function Message(props) {
+    //take time
+    var date = new Date();
+    var hours = date.getHours() < 9 ? '0'+ date.getHours() : date.getHours();
+    var minutes = date.getMinutes() < 9 ? '0'+date.getMinutes() : date.getMinutes();
+    const time = hours + ':' + minutes;
+
     return (
         <li >
-            <span > {props.value} </span>
+            <span > {props.value} <p className="Message-Date">{time}</p> </span>
         </li>
     );
 }
