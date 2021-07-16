@@ -1,3 +1,4 @@
+import { PinDropSharp } from "@material-ui/icons";
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -7,23 +8,30 @@ class Chat extends React.Component {
         super(props);
         this.state = {
             allMessage: [],
+            activePeople: '',
         };
     }
 
-    handleCallback = (FormData) => {
+    handleCallbackMessage = (FormData) => {
         if (FormData) {
-            /*    this.setState(prevState => ({
-                                                 messageList: [...prevState.messageList, FormData]
-                                             })); */
             this.setState((prevState) => ({
                 allMessage: [...prevState.allMessage, FormData],
             }));
         }
     };
 
+    handleCallbackContact = (PeopleData) => {
+        if (FormData) {
+            this.setState(
+                this.activePeople = FormData
+            )
+        };
+    }
+
     componentDidMount() {
         this.timerID = setInterval(() => this.serverMessage(), 10000);
     }
+
     componentWillUnmount() {
         clearInterval(this.timerID);
     }
@@ -37,19 +45,19 @@ class Chat extends React.Component {
     render() {
         let message;
         if (this.state.allMessage) {
-            message = <MessageList dataParentToChild={this.state.allMessage} />;
+            message = <MessageList dataParentToChild={this.state.allMessage} activePeople={this.activePeople} />;
         }
 
         return (
             <div className="wrapper" >
-                <div className="contacts" > <Contact /> </div>
+                <div className="contacts" > <Contact parentCallback={this.handleCallbackContact} /> </div>
                 <div className="chat">
-                    <Form parentCallback={this.handleCallback} /> {message}
+                    <Form parentCallback={this.handleCallbackMessage} /> {message}
                 </div>
             </div>
         );
     }
-}
+};
 
 class Form extends React.Component {
     constructor(props) {
@@ -136,7 +144,7 @@ function People(props) {
     var hours = date.getHours() < 9 ? '0' + date.getHours() : date.getHours();
     var minutes = date.getMinutes() < 9 ? '0' + date.getMinutes() : date.getMinutes();
     const time = hours + ':' + minutes;
-    const imageSrc = "https://ui-avatars.com/api/?name="+props.value+"&color=7F9CF5&background=EBF4FF";
+    const imageSrc = "https://ui-avatars.com/api/?name=" + props.value + "&color=7F9CF5&background=EBF4FF";
 
     return (
         <li id="people">
@@ -158,7 +166,7 @@ function MessageList(props) {
     const messagesList = messages.map((message) => (
         //key especificada dentro del array.
         <Message
-            key={new Date()} value={message}
+            key={new Date()} value={message} activePeople={props.activePeople}
         />
     ));
 
@@ -172,9 +180,13 @@ function Message(props) {
     var minutes = date.getMinutes() < 9 ? '0' + date.getMinutes() : date.getMinutes();
     const time = hours + ':' + minutes;
 
+    const imageSrc = "https://ui-avatars.com/api/?name=" + props.activePeople + "&color=7F9CF5&background=EBF4FF";
     return (
         <li >
-            <span > {props.value} <p className="Message-Date">{time}</p> </span>
+            <div>
+                <img id="imageMessage" src={imageSrc} alt={props.activePeople} />
+                <span > {props.value} <p className="Message-Date">{time}</p> </span>
+            </div>
         </li>
     );
 }
