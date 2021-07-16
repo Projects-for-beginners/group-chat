@@ -97,6 +97,7 @@
 #messages>li:nth-child(odd)>span {
   float: right;
   clear: left;
+  color: white;
   background: #7130FE;
 }
 
