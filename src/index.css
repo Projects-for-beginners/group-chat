@@ -1,13 +1,18 @@
+body{
+  background: linear-gradient(to right, #ECF8FE, #f6e6ef);
+}
+
 .wrapper {
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 33% 67%;
   grid-gap: 10px;
   /* grid-auto-rows: minmax(25%, 25%); */
 }
 
 .chat {
-  border: 1px solid red;
-  padding: 0 1rem;
+  /* border: 1px solid red; */
+  margin-right: 1rem;
+  padding: 0 2rem;
   word-break: break-all;
 }
 
@@ -16,7 +21,7 @@
   padding: 0.1rem;
   position: fixed;
   bottom: 0;
-  left: 42%;
+  left: 33%;
   right: 0.65%;
   display: flex;
   height: 3rem;
@@ -80,8 +85,8 @@
 
 #messages>li>span {
   display: inline-block;
-  padding: 0.8rem 2rem 0.65rem 1rem;
-  margin-top: 5px;
+  padding: 0.8rem 2rem 1rem 1rem;
+  margin-top: 1rem;
   border-radius: 10px;
   box-shadow: 0px 1px 5px gray;
   position: relative;
@@ -122,8 +127,9 @@
 }
 
 .contacts {
-  padding: 0.4rem;
-  border: 1px solid blue;
+  padding: 0.4rem 2rem;
+  margin-left: 1rem;
+  /* border: 1px solid blue; */
   word-break: break-all;
 }
 
@@ -135,7 +141,8 @@
 
 #people {
   list-style-type: none;
-  margin: 1rem 0 0 0;
+  max-height: 5rem;
+  margin: 1.5rem 0 0 0;
   padding: 0.4rem 0.4rem 0 0.4rem ;
   display: flex;
   justify-content: space-between;
@@ -143,6 +150,8 @@
   box-shadow: 0px 1px 5px gray;
   position: relative;
   z-index: 1;
+  background-color: white;
+  word-break:break-all;
 }
 
 #people:first-child{
