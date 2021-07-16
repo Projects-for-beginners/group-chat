@@ -94,7 +94,7 @@ class Contact extends React.Component {
         };
     }
     componentDidMount() {
-        this.timerID = setInterval(() => this.serverMessage(), 7000);
+        this.timerID = setInterval(() => this.serverMessage(), 10000);
     }
     componentWillUnmount() {
         clearInterval(this.timerID);
@@ -136,14 +136,19 @@ function People(props) {
     var hours = date.getHours() < 9 ? '0' + date.getHours() : date.getHours();
     var minutes = date.getMinutes() < 9 ? '0' + date.getMinutes() : date.getMinutes();
     const time = hours + ':' + minutes;
+    const imageSrc = "https://ui-avatars.com/api/?name="+props.value+"&color=7F9CF5&background=EBF4FF";
 
     return (
         <li id="people">
-            <span> <p className="PeopleName"> {props.value} </p> <p className="People-Date">{time}</p> </span>
-            <p id="peopleLastMessage"><small>Lorem ipsum dolor sit amet consectetur adipisicing elit.s
-                Ullam nihil in odit omnis eius earum, corporis adipisci voluptatem
-                obcaecati temporibus perspiciatis dicta fugit saepe quod officiis!
-                Mollitia consequatur minus quis</small></p>
+            <figure>
+                <img id="PeopleImage" src={imageSrc} />
+            </figure>
+            <div>
+                <span> <p className="PeopleName"> {props.value} </p> <p className="People-Date">{time}</p> </span>
+                <p id="peopleLastMessage">
+                    <small>Lorem ipsum dolor sit amet consectetur adipisicing elit.s
+                        Ullam nihil in odit ...</small></p>
+            </div>
         </li>
     );
 }
