@@ -39,14 +39,13 @@ class Chat extends React.Component {
     render() {
         let message;
         if (this.state.allMessage) {
-            message = < MessageList dataParentToChild={this.state.allMessage}
-            />;
+            message = <MessageList dataParentToChild={this.state.allMessage} />;
         }
 
         return (
             <div className="wrapper" >
-                <div className="contacts" > Algo </div>
-                <div className="chat" >
+                <div className="contacts" > <Contact /> </div>
+                <div className="chat">
                     <Form parentCallback={this.handleCallback} /> {message}
                 </div>
             </div>
@@ -87,8 +86,12 @@ class Form extends React.Component {
     }
 }
 
+function Contact() {
+    const name = ['Darrel Steward', 'Ralph Edwards', ' Albert Flores', 'Ronald Richards', 'Kathryn Murphy'];
+    return <p>{name}</p>;
+}
+
 function MessageList(props) {
-    console.log(props.dataParentToChild);
     const messages = props.dataParentToChild;
     const messagesList = messages.map((message) => (
         //key especificada dentro del array.
@@ -104,8 +107,8 @@ function MessageList(props) {
 function Message(props) {
     //take time
     var date = new Date();
-    var hours = date.getHours() < 9 ? '0'+ date.getHours() : date.getHours();
-    var minutes = date.getMinutes() < 9 ? '0'+date.getMinutes() : date.getMinutes();
+    var hours = date.getHours() < 9 ? '0' + date.getHours() : date.getHours();
+    var minutes = date.getMinutes() < 9 ? '0' + date.getMinutes() : date.getMinutes();
     const time = hours + ':' + minutes;
 
     return (
