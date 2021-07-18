@@ -1,4 +1,10 @@
+@font-face {
+  font-family: "Nunito";
+  src: url('Nunito-Regular.ttf');
+}
+
 body {
+  font-family: "Nunito", sans-serif;
   font-size: 16px;
   background: linear-gradient(to right, #ecf8fe, #f6e6ef);
 }
@@ -31,11 +37,10 @@ body {
   border: none;
   padding: 1rem;
   flex-grow: 1;
-  border-radius: 1rem;
   margin: 0.25rem;
   position: relative;
-  box-shadow: 0px 1px 10px gray;
-  border-radius: 10px;
+  box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
 }
 
 #input:focus {
@@ -43,7 +48,7 @@ body {
 }
 
 #input::placeholder {
-  color: gray;
+  color: #B6B8BA;
 }
 
 #form button {
@@ -80,8 +85,8 @@ body {
   height: 2rem;
   margin-top: 1rem;
   margin-right: 10px;
-  border-radius: 100%;
-  box-shadow: 0px 1px 6px gray;
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px 1px rgba(51, 50, 50, 0.2);
 }
 
 #messages li:nth-child(odd) div img {
@@ -113,12 +118,13 @@ body {
 }
 
 #messages li div span {
-  padding: 0.8rem 2rem 1rem 1rem;
-  margin-top: 1rem;
-  border-radius: 10px;
-  box-shadow: 0px 1px 5px gray;
   position: relative;
   z-index: 1;
+  max-width: 70%;
+  padding: 0.8rem 2rem 1rem 1rem;
+  margin-top: 1rem;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px 1.5px rgba(51, 50, 50, 0.2);
 }
 
 #messages li:nth-child(even) div span {
@@ -128,14 +134,15 @@ body {
 #messages li:nth-child(even) div span {
   float: left;
   clear: right;
+  color: #121929;
   background: white;
 }
 
-#messages li:nth-child(odd) div span {
+#messages li:nth-child(odd) div span{
   float: right;
   clear: left;
-  color: white;
-  background: #7130fe;
+  color: #FFFFFF;
+  background: #7A40FD;
 }
 
 #messages li:first-child div {
@@ -149,16 +156,22 @@ body {
   margin-bottom: 3rem;
 }
 
+#messages li:nth-child(even) div span .Text {
+  color: #121929;
+}
+
+.Text {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
 .Message-Date {
   position: absolute;
   right: 0;
   bottom: 0;
-  font-size: 0.7em;
-  margin: 0% 8px 1% 0%;
-}
-
-#messages > li:nth-child(even) > div > span > .Message-Date {
-  color: gray;
+  margin: 0 10px 1% 0;
+  font-size: 0.65em;
+  color: #B6B8BA;
 }
 
 #messages > li:nth-child(odd) > div > span > .Message-Date {
@@ -176,12 +189,13 @@ body {
 
 .Message-User{
   margin-bottom: 8px;
-  color: gray;
+  color: #B6B8BA;
 }
 
 .contacts {
-  padding: 0.4rem 2rem;
-  margin-left: 1rem;
+  /* padding: 0.4rem 2rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem; */
   word-break: break-all;
 }
 
@@ -192,16 +206,15 @@ body {
 }
 
 #people {
-  list-style-type: none;
-  max-height: 5rem;
-  margin: 1.5rem 0 0 0;
-  padding: 0.4rem 0.4rem 0 0.4rem;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 10px;
-  box-shadow: 0px 1px 5px gray;
   position: relative;
   z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.75rem 0 0 0;
+  padding: 0.4rem 0.4rem 0 0.4rem;
+  border-radius: 13px;
+  box-shadow: 0px 2px 4px 1.5px rgba(51, 50, 50, 0.2);
+  list-style-type: none;
   background-color: white;
   word-break: break-all;
 }
@@ -218,7 +231,7 @@ body {
 #PeopleImage {
   margin: 0;
   padding: 0;
-  border-radius: 2rem;
+  border-radius: 50%;
   width: 2rem;
 }
 
@@ -239,15 +252,12 @@ body {
   margin: 0;
   font-weight: bold;
   font-size: 0.9em;
+  color: #121929;
 }
 
 .People-Date {
   margin: 0;
   font-weight: initial;
   font-size: 0.75em;
-  color: gray;
-}
-
-#peopleLastMessage {
-  margin: 0;
+  color: #B6B8BA;
 }
