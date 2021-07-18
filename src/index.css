@@ -1,17 +1,15 @@
 body {
   font-size: 16px;
-  background: linear-gradient(to right, #ECF8FE, #f6e6ef);
+  background: linear-gradient(to right, #ecf8fe, #f6e6ef);
 }
 
 .wrapper {
   display: grid;
   grid-template-columns: 33% 67%;
   grid-gap: 10px;
-  /* grid-auto-rows: minmax(25%, 25%); */
 }
 
 .chat {
-  border: 1px solid red;
   margin-right: 1rem;
   padding: 0 2rem;
   word-break: break-all;
@@ -115,13 +113,16 @@ body {
 }
 
 #messages li div span {
-  display: inline-block;
   padding: 0.8rem 2rem 1rem 1rem;
   margin-top: 1rem;
   border-radius: 10px;
   box-shadow: 0px 1px 5px gray;
   position: relative;
   z-index: 1;
+}
+
+#messages li:nth-child(even) div span {
+  display: grid;
 }
 
 #messages li:nth-child(even) div span {
@@ -134,21 +135,21 @@ body {
   float: right;
   clear: left;
   color: white;
-  background: #7130FE;
+  background: #7130fe;
 }
 
-#messages li:first-child div{
+#messages li:first-child div {
   padding: 0;
   margin: 0;
 }
 
-#messages li:last-child div{
+#messages li:last-child div {
   margin-top: 0;
   height: auto;
   margin-bottom: 3rem;
 }
 
-#messages li div span p {
+.Message-Date {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -156,18 +157,31 @@ body {
   margin: 0% 8px 1% 0%;
 }
 
-#messages>li:nth-child(even) div span p {
+#messages > li:nth-child(even) > div > span > .Message-Date {
   color: gray;
 }
 
-#messages>li:nth-child(odd) div span p {
+#messages > li:nth-child(odd) > div > span > .Message-Date {
   color: white;
+}
+
+#messages > li:nth-child(odd) > div > span > .Message-User {
+  display: none;
+}
+
+.item {
+  padding: 0;
+  margin: 0;
+}
+
+.Message-User{
+  margin-bottom: 8px;
+  color: gray;
 }
 
 .contacts {
   padding: 0.4rem 2rem;
   margin-left: 1rem;
-  /* border: 1px solid blue; */
   word-break: break-all;
 }
 

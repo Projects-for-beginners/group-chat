@@ -1,4 +1,3 @@
-import { PinDropSharp } from "@material-ui/icons";
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -21,10 +20,8 @@ class Chat extends React.Component {
     };
 
     handleCallbackContact = (PeopleData) => {
-        if (FormData) {
-            this.setState(
-                this.activePeople = FormData
-            )
+        if (PeopleData) {
+            this.setState({ activePeople: PeopleData });
         };
     }
 
@@ -45,14 +42,15 @@ class Chat extends React.Component {
     render() {
         let message;
         if (this.state.allMessage) {
-            message = <MessageList dataParentToChild={this.state.allMessage} activePeople={this.activePeople} />;
+            message = <MessageList dataParentToChild={this.state.allMessage} activePeople={this.state.activePeople} />;
         }
 
         return (
             <div className="wrapper" >
                 <div className="contacts" > <Contact parentCallback={this.handleCallbackContact} /> </div>
                 <div className="chat">
-                    <Form parentCallback={this.handleCallbackMessage} /> {message}
+                    <Form parentCallback={this.handleCallbackMessage} />
+                    {message}
                 </div>
             </div>
         );
@@ -97,12 +95,13 @@ class Contact extends React.Component {
         super(props);
         this.state = {
             nameList: ['Darrel Steward', 'Ralph Edwards', ' Albert Flores', 'Ronald Richards', 'Kathryn Murphy'],
-            name: '',
+            name: 'HOLa',
             activeContacts: []
         };
     }
     componentDidMount() {
         this.timerID = setInterval(() => this.serverMessage(), 10000);
+        this.props.parentCallback(this.state.nameList[0]);
     }
     componentWillUnmount() {
         clearInterval(this.timerID);
@@ -112,6 +111,7 @@ class Contact extends React.Component {
         this.setState((prevState) => ({
             activeContacts: [...prevState.activeContacts, this.state.nameList[Math.floor(Math.random() * this.state.nameList.length)]],
         }));
+        this.props.parentCallback(this.state.activeContacts[0]);
     }
 
     render() {
@@ -149,7 +149,7 @@ function People(props) {
     return (
         <li id="people">
             <figure>
-                <img id="PeopleImage" src={imageSrc} />
+                <img id="PeopleImage" src={imageSrc} alt={props.value} />
             </figure>
             <div>
                 <span> <p className="PeopleName"> {props.value} </p> <p className="People-Date">{time}</p> </span>
@@ -182,10 +182,14 @@ function Message(props) {
 
     const imageSrc = "https://ui-avatars.com/api/?name=" + props.activePeople + "&color=7F9CF5&background=EBF4FF";
     return (
-        <li >
+        <li>
             <div>
                 <img id="imageMessage" src={imageSrc} alt={props.activePeople} />
-                <span > {props.value} <p className="Message-Date">{time}</p> </span>
+                <span>
+                    <p className="Message-User item">{props.activePeople}</p>
+                    <p className="Text item">{props.value}</p>
+                    <p className="Message-Date">{time}</p>
+                </span>
             </div>
         </li>
     );
