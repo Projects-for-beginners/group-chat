@@ -72,7 +72,7 @@ class Form extends React.Component {
   render() {
     return (
       <form id="form" onSubmit={this.onTrigger}>
-        <input
+        <textarea
           id="input"
           placeholder="Your message"
           autoComplete="off"

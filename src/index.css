@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Nunito";
-  src: url('Nunito-Regular.ttf');
+  src: url("Nunito-Regular.ttf");
 }
 
 body {
@@ -11,6 +11,12 @@ body {
 
 .wrapper {
   display: grid;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   grid-template-columns: 33% 67%;
   grid-gap: 10px;
 }
@@ -19,6 +25,12 @@ body {
   margin-right: 1rem;
   padding: 0 2rem;
   word-break: break-all;
+  height: 90vh;
+  overflow-y: scroll;
+}
+
+.chat::-webkit-scrollbar{
+  display: none;
 }
 
 #form {
@@ -36,11 +48,14 @@ body {
 #input {
   border: none;
   padding: 1rem;
+  padding-right: 2.5rem;
   flex-grow: 1;
   margin: 0.25rem;
   position: relative;
   box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
+  overflow: hidden;
+  resize: none;
 }
 
 #input:focus {
@@ -48,7 +63,8 @@ body {
 }
 
 #input::placeholder {
-  color: #B6B8BA;
+  font-family: sans-serif;
+  color: #b6b8ba;
 }
 
 #form button {
@@ -125,6 +141,7 @@ body {
   margin-top: 1rem;
   border-radius: 15px;
   box-shadow: 0px 0px 10px 1.5px rgba(51, 50, 50, 0.2);
+  white-space: pre-wrap;
 }
 
 #messages li:nth-child(even) div span {
@@ -138,11 +155,11 @@ body {
   background: white;
 }
 
-#messages li:nth-child(odd) div span{
+#messages li:nth-child(odd) div span {
   float: right;
   clear: left;
-  color: #FFFFFF;
-  background: #7A40FD;
+  color: #ffffff;
+  background: #7a40fd;
 }
 
 #messages li:first-child div {
@@ -171,7 +188,7 @@ body {
   bottom: 0;
   margin: 0 10px 1% 0;
   font-size: 0.65em;
-  color: #B6B8BA;
+  color: #b6b8ba;
 }
 
 #messages > li:nth-child(odd) > div > span > .Message-Date {
@@ -187,19 +204,23 @@ body {
   margin: 0;
 }
 
-.Message-User{
+.Message-User {
   margin-bottom: 8px;
-  color: #B6B8BA;
+  color: #b6b8ba;
 }
 
 .contacts {
-  /* padding: 0.4rem 2rem;
-  margin-bottom: 1rem;
-  margin-left: 1rem; */
+  overflow: scroll;
   word-break: break-all;
+  padding-right: 0.2rem;
+}
+
+.contacts::-webkit-scrollbar{
+  display: none;
 }
 
 #Contacts-List {
+  margin-left: 1rem;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -210,7 +231,7 @@ body {
   z-index: 1;
   display: flex;
   justify-content: space-between;
-  margin: 0.75rem 0 0 0;
+  margin: 1.5rem 0 0 0;
   padding: 0.4rem 0.4rem 0 0.4rem;
   border-radius: 13px;
   box-shadow: 0px 2px 4px 1.5px rgba(51, 50, 50, 0.2);
@@ -259,5 +280,5 @@ body {
   margin: 0;
   font-weight: initial;
   font-size: 0.75em;
-  color: #B6B8BA;
+  color: #b6b8ba;
 }
