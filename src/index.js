@@ -2,6 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+function getTime() {
+  let date = new Date();
+  let hours = ("0" + date.getHours()).substr(-2, 2);
+  let minutes = ("0" + date.getMinutes()).substr(-2, 2);
+  return hours + ":" + minutes;
+}
+
 class Chat extends React.Component {
   constructor(props) {
     super(props);
@@ -42,9 +49,9 @@ class Chat extends React.Component {
           <Contact parentCallback={this.handleCallbackContact} />{" "}
         </div>
         <div className="chat">
-          <Form parentCallback={this.handleCallbackMessage} />
           {message}
         </div>
+        <Form parentCallback={this.handleCallbackMessage} />
       </div>
     );
   }
@@ -63,6 +70,14 @@ class Form extends React.Component {
     event.preventDefault();
   }
 
+  handleEnter(event) {
+    if ( event.code === 'Enter' && event.ctrlKey) {
+      event.preventDefault();
+      this.props.parentCallback( event.target.value.trim(/(\s|\n|\r)/) );
+      this.setState({ value: "" });
+    }
+  }
+
   onTrigger = (event) => {
     this.props.parentCallback(this.state.value);
     this.setState({ value: "" });
@@ -79,6 +94,7 @@ class Form extends React.Component {
           type="text"
           value={this.state.value}
           onChange={this.handleChange}
+          onKeyUp={(e) => this.handleEnter(e)}
         />
         <button id="sendButton"></button>
       </form>
@@ -123,25 +139,16 @@ function PeopleList(props) {
 
 function People(props) {
   //take time
-  var date = new Date();
-  var hours = date.getHours() < 9 ? "0" + date.getHours() : date.getHours();
-  var minutes =
-    date.getMinutes() < 9 ? "0" + date.getMinutes() : date.getMinutes();
-  const time = hours + ":" + minutes;
-  const imageSrc =
-    "https://ui-avatars.com/api/?name=" +
-    props.value +
-    "&color=7F9CF5&background=EBF4FF";
-
+  const time = getTime();
+  const firstLetter = props.value.trim(' ')[0].toUpperCase();
+  
   return (
-    <li id="people">
-      <figure>
-        <img id="PeopleImage" src={imageSrc} alt={props.value} />
-      </figure>
-      <div>
+    <li className="people">
+      <div class="PeopleImage">{firstLetter}</div>
+      <div className="PeopleInfo">
         <span>
           <p className="PeopleName"> {props.value}</p>
-          <p className="People-Date">{time}</p>
+          <p className="People-Date"> {time} </p>
         </span>
       </div>
     </li>
@@ -160,26 +167,16 @@ function MessageList(props) {
 
 function Message(props) {
   //take time
-  var date = new Date();
-  var hours = date.getHours() < 9 ? "0" + date.getHours() : date.getHours();
-  var minutes =
-    date.getMinutes() < 9 ? "0" + date.getMinutes() : date.getMinutes();
-  const time = hours + ":" + minutes;
-
-  const imageSrc =
-    "https://ui-avatars.com/api/?name=" +
-    props.activePeople +
-    "&color=7F9CF5&background=EBF4FF";
+  const time = getTime();
+  const firstLetter = props.activePeople.trim(' ')[0].toUpperCase();
   return (
     <li>
-      <div>
-        <img id="imageMessage" src={imageSrc} alt={props.activePeople} />
-        <span>
-          <p className="Message-User item">{props.activePeople}</p>
-          <p className="Text item">{props.value}</p>
-          <p className="Message-Date">{time}</p>
-        </span>
-      </div>
+      <div class="PeopleImage">{firstLetter}</div>
+      <span>
+        <p className="Message-User item">{props.activePeople}</p>
+        <p className="Text item">{props.value}</p>
+        <p className="Message-Date">{time}</p>
+      </span>
     </li>
   );
 }
