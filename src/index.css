@@ -17,8 +17,8 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  grid-template-columns: 33% 67%;
-  grid-gap: 10px;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 1rem;
 }
 
 .chat {
@@ -27,22 +27,20 @@ body {
   word-break: break-all;
   height: 90vh;
   overflow-y: scroll;
-}
-
-.chat::-webkit-scrollbar{
-  display: none;
+  scrollbar-width: 5px;
+  scrollbar-color: red;
 }
 
 #form {
   background: transparent;
   padding: 0.1rem;
-  position: fixed;
-  bottom: 0;
-  left: 36%;
-  right: 3%;
   display: flex;
   height: 3rem;
   z-index: 2;
+  grid-column: 2 / -1;
+  width: 94%;
+  margin: auto;
+  position: relative;
 }
 
 #input {
@@ -69,20 +67,12 @@ body {
 
 #form button {
   border: none;
-  padding: 0 1rem;
-  margin: 0.25rem;
-  border-radius: 20px;
-  outline: none;
-  background: url("send.svg");
-  padding: 10px;
+  background: url("send.svg") center no-repeat;
   background-size: 100%;
-  background-repeat: no-repeat;
-  background-position-x: center;
-  background-position-y: center;
-  top: 0;
   right: 3%;
-  bottom: 0;
   position: absolute;
+  height: 100%;
+  width: 1.7em;
 }
 
 #messages {
@@ -91,12 +81,12 @@ body {
   padding: 0;
 }
 
-#messages li div {
+#messages li {
   padding: 0;
   margin: 0;
 }
 
-#imageMessage {
+.imageMessage {
   width: 2rem;
   height: 2rem;
   margin-top: 1rem;
@@ -105,35 +95,31 @@ body {
   box-shadow: 0px 0px 5px 1px rgba(51, 50, 50, 0.2);
 }
 
-#messages li:nth-child(odd) div img {
+#messages li:nth-child(odd) img {
   display: none;
 }
 
-#messages li:nth-child(even) div {
+#messages li:nth-child(even) {
   position: relative;
   display: flex;
   width: 100%;
+  margin: 10px 0;
   justify-content: flex-start;
 }
 
-#messages li:nth-child(odd) div {
+#messages li:nth-child(odd) {
   width: 100%;
   position: relative;
   display: flex;
   justify-content: flex-end;
 }
 
-#messages li:nth-child(even) div {
+#messages li:nth-child(odd) {
   /* background: white; */
   margin: 10px 0;
 }
 
-#messages li:nth-child(odd) div {
-  /* background: white; */
-  margin: 10px 0;
-}
-
-#messages li div span {
+#messages li span {
   position: relative;
   z-index: 1;
   max-width: 70%;
@@ -144,38 +130,33 @@ body {
   white-space: pre-wrap;
 }
 
-#messages li:nth-child(even) div span {
+#messages li:nth-child(even) span {
   display: grid;
 }
 
-#messages li:nth-child(even) div span {
+#messages li:nth-child(even) span {
   float: left;
   clear: right;
   color: #121929;
   background: white;
 }
 
-#messages li:nth-child(odd) div span {
+#messages li:nth-child(odd) span {
   float: right;
   clear: left;
   color: #ffffff;
   background: #7a40fd;
 }
 
-#messages li:first-child div {
-  padding: 0;
-  margin: 0;
-}
-
-#messages li:last-child div {
+#messages li:last-child {
   margin-top: 0;
   height: auto;
   margin-bottom: 3rem;
 }
 
-#messages li:nth-child(even) div span .Text {
+#messages li:nth-child(even) .Text {
   color: #121929;
-}
+} 
 
 .Text {
   font-size: 0.9em;
@@ -191,11 +172,11 @@ body {
   color: #b6b8ba;
 }
 
-#messages > li:nth-child(odd) > div > span > .Message-Date {
+#messages li:nth-child(odd) .Message-Date {
   color: white;
 }
 
-#messages > li:nth-child(odd) > div > span > .Message-User {
+#messages li:nth-child(odd) .Message-User {
   display: none;
 }
 
@@ -226,7 +207,7 @@ body {
   flex-direction: column;
 }
 
-#people {
+.people {
   position: relative;
   z-index: 1;
   display: flex;
@@ -240,33 +221,34 @@ body {
   word-break: break-all;
 }
 
-#people:first-child {
+.people:first-child {
   margin: 0;
 }
 
-#people figure {
-  margin: 5px 0.7rem 5px 0;
-  padding: 0;
-}
-
-#PeopleImage {
-  margin: 0;
-  padding: 0;
-  border-radius: 50%;
-  width: 2rem;
-}
-
-#people div {
+.people .PeopleInfo {
   margin: 0;
   padding: 0;
   margin-bottom: 10px;
   width: 100%;
 }
 
-#people div span {
+.people .PeopleInfo span {
   margin-top: 5px;
   display: flex;
   justify-content: space-between;
+}
+
+.PeopleImage {
+  padding: 0;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7F9CF5;
+  background: #EBF4FF;
+  margin: 5px 0.7rem 5px 0;
 }
 
 .PeopleName {

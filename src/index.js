@@ -171,7 +171,7 @@ function Message(props) {
   const firstLetter = props.activePeople.trim(' ')[0].toUpperCase();
   return (
     <li>
-      <div class="PeopleImage">{firstLetter}</div>
+      <div className="PeopleImage">{firstLetter}</div>
       <span>
         <p className="Message-User item">{props.activePeople}</p>
         <p className="Text item">{props.value}</p>
