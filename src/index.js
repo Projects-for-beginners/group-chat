@@ -144,7 +144,7 @@ function People(props) {
   
   return (
     <li className="people">
-      <div class="PeopleImage">{firstLetter}</div>
+      <div className="PeopleImage">{firstLetter}</div>
       <div className="PeopleInfo">
         <span>
           <p className="PeopleName"> {props.value}</p>
